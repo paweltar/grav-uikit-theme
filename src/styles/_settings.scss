@@ -1,0 +1,10 @@
+// Custom media queries
+// Use as @media (--medium) { … }
+@custom-media --extra-small (width <= 640px);
+@custom-media --small (width >= 640px);
+@custom-media --medium (width >= 960px);
+@custom-media --large (width >= 1200px);
+@custom-media --extra-large (width >= 1600px);
+@custom-media --only-small (640px < width <= 960px);
+@custom-media --only-medium (960px < width <= 1200px);
+@custom-media --only-large (1200px < width <= 1600px);

@@ -6,11 +6,13 @@ var sourcemaps = require('gulp-sourcemaps');
 var cssnext = require('postcss-cssnext');
 var sass = require('gulp-sass');
 var autoprefixer = require('autoprefixer');
+var mqpacker = require('css-mqpacker');
 
 
 gulp.task('css', function() {
 
-  var postCssOptions = [
+  var postcssPlugins = [
+    mqpacker,
     cssnext({ browsers: ['last 2 versions', '> 2%'] })
   ];
 
@@ -22,7 +24,7 @@ gulp.task('css', function() {
       precision: 3,
       errLogToConsole: true
     }))
-  .pipe( postcss(postCssOptions) )
+  .pipe( postcss(postcssPlugins) )
   .pipe( sourcemaps.write('.') )
   .pipe( gulp.dest('css') );
 });
