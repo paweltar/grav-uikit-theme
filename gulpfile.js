@@ -4,6 +4,8 @@ var del = require('del');
 var postcss    = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var cssnext = require('postcss-cssnext');
+var sass = require('gulp-sass');
+var autoprefixer = require('autoprefixer');
 
 
 gulp.task('css', function() {
@@ -12,8 +14,14 @@ gulp.task('css', function() {
     cssnext({ browsers: ['last 2 versions', '> 2%'] })
   ];
 
-  return gulp.src('src/styles/main.css')
+  return gulp.src('src/styles/main.scss')
   .pipe( sourcemaps.init() )
+  .pipe(sass({
+      outputStyle: 'nested',
+      imagePath: 'images/',
+      precision: 3,
+      errLogToConsole: true
+    }))
   .pipe( postcss(postCssOptions) )
   .pipe( sourcemaps.write('.') )
   .pipe( gulp.dest('css') );
