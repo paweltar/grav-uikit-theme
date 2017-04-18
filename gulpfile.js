@@ -7,6 +7,7 @@ var cssnext = require('postcss-cssnext');
 var sass = require('gulp-sass');
 var autoprefixer = require('autoprefixer');
 var mqpacker = require('css-mqpacker');
+var webpack = require('gulp-webpack');
 
 
 gulp.task('css', function() {
@@ -29,6 +30,12 @@ gulp.task('css', function() {
   .pipe( gulp.dest('css') );
 });
 
+gulp.task('js', function() {
+  return gulp.src('./src/scripts/main.js')
+  .pipe(webpack( require('./webpack.config.js') ))
+  .pipe(gulp.dest('js/'));
+});
+
 gulp.task('clean:dist', function() {
   return del.sync('css');
 });
@@ -37,7 +44,7 @@ gulp.task('watch', function() {
   gulp.watch('src/styles/**/*', ['css']);
 });
 
-gulp.task('run', ['css']);
+gulp.task('run', ['css', 'js']);
 
 gulp.task('default', function() {
   runSequence('clean:dist', ['run', 'watch']);
