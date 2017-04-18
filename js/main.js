@@ -56,6 +56,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	_uikit2.default.use(_uikitIcons2.default);
+
 	$(document).ready(function () {
 	  console.log('hello');
 	});

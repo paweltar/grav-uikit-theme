@@ -1,0 +1,17 @@
+<div class="sidebar-content recent-posts">
+    <h3>Recent Posts</h3>
+    {% for p in page.find('/blog').children.order('date', 'desc').slice(0, 5) %}
+        {% set bannerimage = p.media['banner.jpg'] %}
+        <div class="recent-post">
+            {% if bannerimage %}
+                <div class="recent-post-image">{{ bannerimage.cropZoom(60,60).quality(60) }}</div>
+            {% else %}
+                <div class="recent-post-image"><img src="{{ url('theme://images/logo.png') }}" width="60" height="60"></div>
+            {% endif %}
+            <div class="recent-post-text">
+                <h4><a href="{{p.url}}">{{ p.title }}</a></h4>
+                <p>{{ p.date|date("M j, Y")}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
