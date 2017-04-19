@@ -1,6 +1,6 @@
 {% set first_image = page.media.images | first %}
 
-<div>
+<div class="{{ page.header.body_classes }}">
     <a href="{{ page.url }}" class="uk-link-reset">
         {% if first_image %}
             <div
