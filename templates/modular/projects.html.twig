@@ -1,6 +1,6 @@
 <div class="sidebar-content recent-posts">
-    <h3>Ostatnie wpisy na blogu</h3>
-    {% for p in page.find('/blog').children.order('date', 'desc').slice(0, 5) %}
+    <h3>Ostatnie projekty</h3>
+    {% for p in page.find('/projekty').children.order('date', 'desc').slice(0, 5) %}
         {% set bannerimage = p.media['banner.jpg'] %}
         <div class="recent-post">
             {% if bannerimage %}

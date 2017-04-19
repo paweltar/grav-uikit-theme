@@ -1,0 +1,37 @@
+{% set first_image = page.media.images | first %}
+
+<div>
+    <a href="{{ page.url }}" class="uk-link-reset">
+        {% if first_image %}
+            <div
+                class="uk-background-cover uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded uk-height-medium uk-card"
+                style="background-image: linear-gradient(
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0.9)
+    ), url({{ first_image.url }});">
+    <div class="uk-overlay uk-light uk-position-bottom">
+            {% else %}
+                <div class="uk-background-cover uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded uk-height-medium uk-card uk-card-default">
+                  <div class="uk-overlay uk-dark uk-position-bottom">
+                {% endif %}
+
+                    <h2 class="uk-margin-remove-bottom uk-text-capitalize">{{ page.title}}</h2>
+                    <p class="uk-margin-remove">
+                        <time datetime="{{ post.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}">
+                            <span>{{ post.date|date('d') }}
+                                {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}
+                                {{ post.date|date('Y') }}</span>
+                        </time>
+                    </p>
+                    {% if page.taxonomy.tag %}
+                        <span>
+                            {% for tag in page.taxonomy.tag %}
+                                <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
+                                <a href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="uk-link-reset">{{ tag }}</a>
+                            {% endfor %}
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+    </div>

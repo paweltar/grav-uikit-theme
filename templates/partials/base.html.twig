@@ -11,6 +11,7 @@
     {% include 'partials/metadata.html.twig' %}
 
     <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png') }}" />
+    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/EB+Garamond:400,400i">
     <link rel="canonical" href="{{ page.url(true, true) }}" />
 
     {% block stylesheets %}
@@ -31,7 +32,9 @@
 {% block header %}
     <div class="uk-section uk-section-xsmall uk-section-default uk-box-shadow-medium uk-padding-remove-bottom">
         <div class="uk-container">
-            <a class="uk-navbar-item uk-logo" href="{{ base_url == '' ? '/' : base_url }}">{{ config.site.title }}</a>
+            <a class="uk-navbar-item uk-logo" href="{{ base_url == '' ? '/' : base_url }}">
+              <h1>{{ config.site.title }}</h1>
+            </a>
             <div class="uk-margin-medium-top">
                 <ul class="uk-subnav uk-subnav-divider uk-flex-center" uk-margin>
                     {% block header_navigation %}
@@ -45,9 +48,7 @@
 
 {% block body %}
     <section id="body">
-        <div class="wrapper padding">
-        {% block content %}{% endblock %}
-        </div>
+      {% block content %}{% endblock %}
     </section>
 {% endblock %}
 

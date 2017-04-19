@@ -1,36 +1,38 @@
 {% embed 'partials/base.html.twig' %}
 
-	{% set collection = page.collection() %}
+    {% set collection = page.collection() %}
 
-	{% block content %}
-		{% set blog_image = page.media.images|first.grayscale().contrast(20).brightness(-100).colorize(-35,81,122) %}
+    {% block content %}
 
-		{% if blog_image %}
-		<div class="flush-top blog-header blog-header-image" style="background-image: url({{ blog_image.url }});">
-		{% else %}
-		<div class="blog-header">
-		{% endif %}
-			{{ page.content }}
-		</div>
+        {% set blog_image = page.media.images | first.grayscale().contrast(20).brightness(-100).colorize(-35, 81, 122) %}
 
-			{% if config.plugins.breadcrumbs.enabled %}
-				{% include 'partials/breadcrumbs.html.twig' %}
-			{% endif %}
-
-		<div class="content-wrapper blog-content-list grid pure-g">
-			<div id="listing" class="block pure-u-2-3 h-feed">
-				{% for child in collection %}
-			        {% include 'partials/blog_item.html.twig' with {'blog':page, 'page':child, 'truncate':true} %}
-			    {% endfor %}
-
-                {% if config.plugins.pagination.enabled and collection.params.pagination %}
-                    {% include 'partials/pagination.html.twig' with {'base_url':page.url, 'pagination':collection.params.pagination} %}
+        {% if blog_image %}
+            <div class="uk-section uk-section-media uk-section-xlarge uk-light uk-background-cover" style="background-image: url({{ blog_image.url }});">
+            {% else %}
+                <div class="uk-section uk-section-large uk-section-muted uk-margin-top">
                 {% endif %}
-			</div>
-			<div id="sidebar" class="block size-1-3 pure-u-1-3">
-				{% include 'partials/sidebar.html.twig' with {'blog':page} %}
-			</div>
-		</div>
-	{% endblock %}
+                <div class="uk-container">
+                    <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+                        {{ page.content }}
+                    </div>
+                </div>
+            </div>
 
-{% endembed %}
+            {% if config.plugins.breadcrumbs.enabled %}
+                {% include 'partials/breadcrumbs.html.twig' %}
+            {% endif %}
+
+            <div class="uk-section uk-section-muted uk-preserve-color">
+                <div class="uk-container">
+									<h1 class="uk-heading-line uk-text-center"><span>Ostatnie wpisy na blogu</span></h1>
+                    <div class="uk-child-width-1-2@s uk-child-width-1-3@m" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 500" uk-grid>
+                        {% for child in collection %}
+                            {% include 'partials/blog_item_card.html.twig' with {'blog': page, 'page': child, 'truncate': true} %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        {% endblock %}
+
+    {% endembed %}

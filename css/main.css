@@ -10140,6 +10140,18 @@ td.uk-text-break {
 /* ========================================================================
    Component: Print
  ========================================================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: EB Garamond, serif; }
+
+time > span {
+  font-family: EB Garamond;
+  font-style: italic;
+  font-size: 22px; }
 
 @media (min-width: 960px){
   .uk-heading-primary{
