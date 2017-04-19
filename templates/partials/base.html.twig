@@ -28,49 +28,19 @@
 </head>
 <body class="{{ page.header.body_classes }}">
 
-  <div class="uk-offcanvas-content">
-          <!-- This is the off-canvas -->
-        <div id="offcanvas-nav-primary" uk-offcanvas="overlay: true">
-        <div class="uk-offcanvas-bar uk-flex uk-flex-column">
-
-            <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
-                <li class="uk-active"><a href="#">Active</a></li>
-                <li class="uk-parent">
-                    <a href="#">Parent</a>
-                    <ul class="uk-nav-sub">
-                        <li><a href="#">Sub item</a></li>
-                        <li><a href="#">Sub item</a></li>
-                    </ul>
-                </li>
-                <li class="uk-nav-header">Header</li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Item</a></li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Item</a></li>
-                <li class="uk-nav-divider"></li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: trash"></span> Item</a></li>
-            </ul>
-
+{% block header %}
+    <div class="uk-section uk-section-xsmall uk-section-default uk-box-shadow-medium uk-padding-remove-bottom">
+        <div class="uk-container">
+            <a class="uk-navbar-item uk-logo" href="{{ base_url == '' ? '/' : base_url }}">{{ config.site.title }}</a>
+            <div class="uk-margin-medium-top">
+                <ul class="uk-subnav uk-subnav-divider uk-flex-center" uk-margin>
+                    {% block header_navigation %}
+                        {% include 'partials/navigation.html.twig' %}
+                    {% endblock %}
+                </ul>
+            </div>
         </div>
     </div>
-
-      </div>
-
-{% block header %}
-    <nav class="uk-navbar-container" uk-navbar="mode: click">
-    <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav">
-            <a class="uk-navbar-item uk-logo" href="{{ base_url == '' ? '/' : base_url }}">{{ config.site.title }}</a>
-            {% block header_navigation %}
-                {% include 'partials/navigation.html.twig' %}
-            {% endblock %}
-        </ul>
-    <div class="uk-navbar-right">
-
-      <ul class="uk-navbar-nav">
-          <li><span class="uk-margin-small-right" uk-icon="icon: menu" uk-toggle="target: #offcanvas-nav-primary"></span></li>
-      </ul>
-
-    </div>
-</nav>
 {% endblock %}
 
 {% block body %}
