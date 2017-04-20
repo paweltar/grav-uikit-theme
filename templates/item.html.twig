@@ -15,7 +15,7 @@
   rgba(0, 0, 0, 0.1) 40%,
   rgba(0, 0, 0, 0.9)
 ), url({{ header_image_media.url }})">
-                <div class="uk-container uk-text-center">
+                <div class="uk-container uk-text-center" uk-scrollspy="target: > h1,p; cls:uk-animation-slide-bottom-small; delay: 500">
                     <h1 class="uk-text-capitalize">{{ page.title }}</h1>
                     <p>
                         <em>
@@ -30,7 +30,7 @@
 
                 <div class="uk-overlay uk-dark uk-position-bottom">
                     {% if page.taxonomy.tag %}
-                        <span>
+                        <span uk-scrollspy="target: > *; cls:uk-animation-slide-bottom-small; delay: 225">
                             {% for tag in page.taxonomy.tag %}
                                 <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
                                 <a href="{{ page.parent.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="p-category">{{ tag }}</a>
