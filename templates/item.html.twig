@@ -33,7 +33,7 @@
                         <span>
                             {% for tag in page.taxonomy.tag %}
                                 <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
-                                <span>{{ tag }}</span>
+                                <a href="{{ page.parent.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="p-category">{{ tag }}</a>
                             {% endfor %}
                         </span>
                     {% endif %}
