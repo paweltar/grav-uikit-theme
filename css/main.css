@@ -10153,6 +10153,14 @@ time > span {
   font-style: italic;
   font-size: 22px; }
 
+.nav__container, .uk-modal-dialog {
+  height: 100%; }
+
+.uk-modal-dialog {
+  height: 100%;
+  opacity: 0.97;
+  font-family: EB Garamond; }
+
 @media (min-width: 960px){
   .uk-heading-primary{
     font-size: 3.75rem;

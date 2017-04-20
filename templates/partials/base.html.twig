@@ -30,21 +30,44 @@
 <body class="{{ page.header.body_classes }}">
 
 {% block header %}
-    <div class="uk-section uk-section-xsmall uk-section-default uk-box-shadow-medium uk-padding-remove-bottom">
-        <div class="uk-container uk-text-center">
-            <a class="uk-navbar-item uk-logo" href="{{ base_url == '' ? '/' : base_url }}">
-              <h1>{{ config.site.title }}</h1>
-            </a>
-            <h4 class="site__subtitle uk-margin-remove-top">{{ config.site.myfield }}</h4>
-            <div class="uk-margin-medium-top">
-                <ul class="uk-subnav uk-subnav-divider uk-flex-center" uk-margin>
-                    {% block header_navigation %}
-                        {% include 'partials/navigation.html.twig' %}
-                    {% endblock %}
-                </ul>
-            </div>
+  <nav class="uk-navbar-container navigation--desktop uk-visible@s" uk-navbar>
+
+      <div class="uk-navbar-left">
+          <ul class="uk-navbar-nav">
+              <li><a href="{{ base_url == '' ? '/' : base_url }}"><h3 class="uk-margin-remove-bottom">{{ config.site.title }}<span class="site__subtitle"> {{ config.site.subtitle }}</span></h3></a></li>
+          </ul>
+      </div>
+
+      <div class="uk-navbar-right">
+          <ul class="uk-navbar-nav">
+            {% block header_navigation %}
+                {% include 'partials/navigation.html.twig' %}
+            {% endblock %}
+          </ul>
+      </div>
+
+  </nav>
+
+  <nav class="uk-navbar uk-navbar-container navigation--mobile uk-hidden@s">
+      <div class="uk-navbar-left">
+          <a class="uk-navbar-toggle" href="#modal-full" uk-toggle>
+              <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span>
+          </a>
+      </div>
+  </nav>
+
+  <div id="modal-full" class="uk-modal-full" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-full" type="button" uk-close></button>
+        <div class="uk-flex uk-flex-center uk-flex-middle nav__container">
+            <ul class="uk-nav-primary uk-nav-center uk-nav-parent-icon" uk-nav>
+                <li class="uk-nav-header">Menu</li>
+                <li class="uk-nav-divider"></li>
+                {% include 'partials/navigation.html.twig' %}
+            </ul>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block body %}
