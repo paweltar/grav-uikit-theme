@@ -7,13 +7,15 @@
         {% set blog_image = page.media.images | first.grayscale().contrast(20).brightness(-100).colorize(-35, 81, 122) %}
 
         {% if blog_image %}
-            <div class="uk-section uk-section-media uk-section-xlarge uk-light uk-background-cover" style="background-image: url({{ blog_image.url }});">
+            <div class="uk-section uk-section-media uk-section-large uk-light uk-background-cover" style="background-image: url({{ blog_image.url }});">
             {% else %}
-                <div class="uk-section uk-section-large uk-section-muted uk-margin-top">
+                <div class="uk-section uk-section-large uk-section-default uk-margin-top">
                 {% endif %}
                 <div class="uk-container">
                     <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+                      <div class="">
                         {{ page.content }}
+                      </div>
                     </div>
                 </div>
             </div>
