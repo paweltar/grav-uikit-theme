@@ -2,8 +2,53 @@
 
     {% block content %}
 
+        {% set header_image = page.header.header_image | defined(true) %}
+        {% set header_image_file = page.header.header_image_file %}
+
+        {% if header_image %}
+            {% if header_image_file %}
+                {% set header_image_media = page.media.images[header_image_file] %}
+            {% else %}
+                {% set header_image_media = page.media.images | first %}
+            {% endif %}
+            <div class="uk-section uk-position-relative uk-section-xlarge uk-section-media uk-light uk-background-cover" style="background-image: linear-gradient(
+  rgba(0, 0, 0, 0.1) 40%,
+  rgba(0, 0, 0, 0.9)
+), url({{ header_image_media.url }})">
+                <div class="uk-container uk-text-center">
+                    <h1 class="uk-text-capitalize">{{ page.title }}</h1>
+                    <p>
+                        <em>
+                            <time class="dt-published" datetime="{{ post.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}">
+                                <span>{{ post.date|date('d') }}
+                                    {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}
+                                    {{ post.date|date('Y') }}</span>
+                            </time>
+                        </em>
+                    </p>
+                </div>
+
+                <div class="uk-overlay uk-dark uk-position-bottom">
+                    {% if page.taxonomy.tag %}
+                        <span>
+                            {% for tag in page.taxonomy.tag %}
+                                <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
+                                <span>{{ tag }}</span>
+                            {% endfor %}
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+
+        {% endif %}
+
         {% if config.plugins.breadcrumbs.enabled %}
-            {% include 'partials/breadcrumbs.html.twig' %}
+            <div class="uk-section-muted uk-section-xsmall section--breadcrumbs">
+                <div class="uk-container uk-container-large">
+                    {% include 'partials/breadcrumbs.html.twig' %}
+                </div>
+            </div>
+
         {% endif %}
 
         <div class="uk-margin-top" uk-grid>

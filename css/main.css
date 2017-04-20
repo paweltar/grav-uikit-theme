@@ -10161,6 +10161,10 @@ time > span {
   opacity: 0.97;
   font-family: EB Garamond; }
 
+.section--breadcrumbs {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
 @media (min-width: 960px){
   .uk-heading-primary{
     font-size: 3.75rem;
