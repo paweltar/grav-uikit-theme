@@ -10165,6 +10165,9 @@ time > span {
   padding-top: 20px;
   padding-bottom: 20px; }
 
+article img {
+  width: 100%; }
+
 @media (min-width: 960px){
   .uk-heading-primary{
     font-size: 3.75rem;
