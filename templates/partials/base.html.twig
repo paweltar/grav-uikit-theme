@@ -31,10 +31,11 @@
 
 {% block header %}
     <div class="uk-section uk-section-xsmall uk-section-default uk-box-shadow-medium uk-padding-remove-bottom">
-        <div class="uk-container">
+        <div class="uk-container uk-text-center">
             <a class="uk-navbar-item uk-logo" href="{{ base_url == '' ? '/' : base_url }}">
               <h1>{{ config.site.title }}</h1>
             </a>
+            <h4 class="site__subtitle uk-margin-remove-top">{{ config.site.myfield }}</h4>
             <div class="uk-margin-medium-top">
                 <ul class="uk-subnav uk-subnav-divider uk-flex-center" uk-margin>
                     {% block header_navigation %}
