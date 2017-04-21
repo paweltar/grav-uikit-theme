@@ -1,23 +1,71 @@
-<div class="sidebar-content recent-posts">
-    <h3>Ostatnie wpisy na blogu</h3>
-    {% for p in page.find('/blog').children.order('date', 'desc').slice(0, 5) %}
-        {% set bannerimage = p.media['banner.jpg'] %}
-        <div class="recent-post">
-            {% if bannerimage %}
-                <div class="recent-post-image">{{ bannerimage.cropZoom(60,60).quality(60) }}</div>
-            {% else %}
-                <div class="recent-post-image"><img src="{{ url('theme://images/logo.png') }}" width="60" height="60"></div>
-            {% endif %}
-            <div class="recent-post-text">
-                <h4><a href="{{p.url}}">{{ p.title }}</a></h4>
-                <span class="list-blog-date">
-                    <time class="dt-published" datetime="{{ post.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}">
-                        <span>{{ post.date|date('d') }}
-                        {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}
-                        {{ post.date|date('Y') }}</span>
-                    </time>
-                </span>
-            </div>
-        </div>
-    {% endfor %}
+<div class="uk-section uk-section-muted">
+    <div class="uk-container uk-container-small">
+        <h1 class="uk-heading-divider">Ostatnie wpisy na blogu:</h1>
+        <br>
+
+        {% for p in page.find('/blog').children.order('date', 'desc').slice(0, 5) %}
+            {% set first_image = p.media.images | first %}
+            {% set blog = p.collection() %}
+
+            <article class="uk-article">
+
+                <h1 class="uk-article-title">
+                    <a class="uk-link-reset" href="{{p.url}}">{{ p.title }}</a>
+                </h1>
+
+                <p class="uk-article-meta">
+                    <span>
+                      <time class="dt-published" datetime="{{ p.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}">
+                          <span>{{ p.date|date('d') }}
+                              {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}
+                              {{ p.date|date('Y') }}</span>
+                      </time>
+                    </span>
+                    <p>{% if p.taxonomy.tag %}
+                        <span>
+                            {% for tag in p.taxonomy.tag %}
+                                <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
+                                <a href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="uk-link-reset">{{ tag }}</a>
+                            {% endfor %}
+                        </span>
+                    {% endif %}</p>
+                </p>
+
+                <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <div class="uk-grid-small uk-child-width-auto" uk-grid>
+                    <div>
+                        <a class="uk-button uk-button-text" href="#">Read more</a>
+                    </div>
+                    <div>
+                        <a class="uk-button uk-button-text" href="#">5 Comments</a>
+                    </div>
+                </div>
+
+            </article>
+        {% endfor %}
+    </div>
 </div>
+
+<!-- <div class="recent-post">
+    {% if first_image %}
+        <div class="recent-post-image">{{ first_image.cropZoom(60,60).quality(60) }}</div>
+    {% else %}
+        <div class="recent-post-image"><img src="{{ url('theme://images/logo.png') }}" width="60" height="60"></div>
+    {% endif %}
+    <div class="recent-post-text">
+        <h4>
+            <a href="{{p.url}}">{{ p.title }}</a>
+        </h4>
+        <span class="list-blog-date">
+            <time class="dt-published" datetime="{{ post.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}">
+                <span>{{ post.date|date('d') }}
+                    {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}
+                    {{ post.date|date('Y') }}</span>
+            </time>
+        </span>
+    </div>
+</div> -->
