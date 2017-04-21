@@ -22,6 +22,7 @@
     "gulp-webpack": "^1.5.0",
     "postcss-cssnext": "^2.10.0",
     "run-sequence": "^1.2.2",
+    "slick-carousel": "^1.6.0",
     "webpack": "^2.4.1"
   },
   "dependencies": {
