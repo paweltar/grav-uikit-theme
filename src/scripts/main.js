@@ -9,7 +9,14 @@ $(document).ready(function() {
   console.log('hello');
 
   $('.last-projects__slider').slick({
-    dots: true,
-    speed: 500
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    prevArrow: ".slider__button--prev",
+    nextArrow: ".slider__button--next",
+    fade: true,
+    cssEase: 'linear'
   });
 });
