@@ -1,35 +1,37 @@
 <div class="last-projects__slider">
-  {% set first_image = p.media.images | first %}
     {% for p in page.find('/projekty').children.order('date', 'desc').slice(0, 5) %}
-      {% if first_image %}
-        <div class="uk-section uk-section-media uk-light uk-background-cover" style="background-image: url({{ first_image.url }})">
-            <div class="uk-container">
 
-                <h3><a href="{{p.url}}">{{ p.title }}</a></h3>
+        {% set first_image = p.media.images | first %}
+        <div class="uk-section uk-position-relative uk-section-xlarge uk-section-media uk-light uk-background-cover" style="background-image: linear-gradient(
+rgba(0, 0, 0, 0.1) 40%,
+rgba(0, 0, 0, 0.9)
+), url({{ first_image.url }})">
+            <div class="uk-container uk-text-center">
+                <h1 class="uk-text-capitalize">
+                    <a href="{{p.url}}">{{ p.title }}</a>
+                </h1>
+                <p>
+                    <em>
+                        <time class="dt-published" datetime="{{ p.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}">
+                            <span>{{ p.date|date('d') }}
+                                {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}
+                                {{ p.date|date('Y') }}</span>
+                        </time>
+                    </em>
+                </p>
+            </div>
 
-                <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
-                    <div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                    </div>
-                    <div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                    </div>
-                    <div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                    </div>
-                </div>
+            <div class="uk-overlay uk-dark uk-position-bottom">
+                {% if p.taxonomy.tag %}
+                    <span>
+                        {% for tag in p.taxonomy.tag %}
+                            <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
+                            <a href="{{ p.parent.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="p-category">{{ tag }}</a>
+                        {% endfor %}
+                    </span>
+                {% endif %}
             </div>
         </div>
-        
-        {% endif %}
-        <div>
 
-
-            <time datetime="{{ p.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}">
-                <span>{{ p.date|date('d') }}
-                    {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}
-                    {{ p.date|date('Y') }}</span>
-            </time>
-        </div>
     {% endfor %}
 </div>
