@@ -1,0 +1,31 @@
+title: O Nas
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        advanced:
+          fields:
+            overrides:
+              fields:
+                header.custom.about_path:
+                  type: pages
+                  size: medium
+                  label: Wskaż stronę "O Nas"
+                  show_all: false
+                  show_modular: false
+                  show_root: false
+                  help: PLUGIN_ADMIN.HOME_PAGE_HELP
+                header.an_example_text_field:
+                  type: text
+                  label: Add a number
+                  default: 5
+                  validate:
+                    required: true
+                    type: int
