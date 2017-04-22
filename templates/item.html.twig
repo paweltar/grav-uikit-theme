@@ -48,8 +48,14 @@
                     {% include 'partials/breadcrumbs.html.twig' %}
                 </div>
             </div>
-
         {% endif %}
+
+        <div class="uk-section-default uk-section-xsmall section--breadcrumbs">
+            <div class="uk-container uk-flex uk-flex-between uk-container-large">
+                <p><span uk-icon="icon: clock"></span> {{ page.content|readingtime({'minutes_label': 'Minut', 'minute_label': 'Minuta', 'seconds_label': 'Sekund', 'second_label': 'Sekunda'}) }}</p>
+            </div>
+        </div>
+
 
         <div class="uk-section uk-section-default">
             <div class="uk-container">
