@@ -10245,6 +10245,19 @@ article figcaption {
 .blog-card--blank {
   padding-bottom: 70px; }
 
+.article__meta-info {
+  border-radius: 50px 50px 50px 50px;
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #e5e5e5;
+  padding: 0 30px;
+  vertical-align: middle;
+  font-size: 0.875rem;
+  line-height: 38px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase; }
+
 @media (min-width: 960px){
   .uk-heading-primary{
     font-size: 3.75rem;
