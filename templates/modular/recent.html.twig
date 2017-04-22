@@ -27,24 +27,24 @@
                               </div>
                               <div class="uk-position-bottom uk-overlay uk-light">
                                 {% if p.taxonomy.tag %}
-                                    <p>
+                                    <span>
                                         {% for tag in p.taxonomy.tag %}
                                             <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
-                                            <a href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="uk-link-reset">{{ tag }}</a>
+                                            <a href="{{ p.parent.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="p-category">{{ tag }}</a>
                                         {% endfor %}
-                                    </p>
+                                    </span>
                                 {% endif %}
                               </div>
                             </div>
-                            <div class="uk-card-body">
-                                <h3 class="uk-heading-bullet uk-text-capitalize">{{ p.title }}</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                            <div class="uk-card-body blog-card--blank">
+                                <h3 class="uk-heading-bullet uk-text-capitalize"><a class="uk-link-reset" href="{{p.url}}">{{ p.title }} <span class="uk-margin-small-right" uk-icon="icon: chevron-right" uk-scrollspy="cls: uk-animation-slide-left; repeat: true"></span></a></h3>
+                                <p>{{p.summary}}</p>
                             </div>
                         </div>
                     {% else %}
-                        <div class="uk-card uk-card-default uk-card-large uk-card-body uk-text-center uk-box-shadow-small uk-box-shadow-hover-large">
-                            <h3 class="uk-heading-divider uk-text-capitalize">{{ p.title }}</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <div class="uk-card uk-card-default uk-card-large uk-card-body uk-text-center uk-box-shadow-small uk-light uk-box-shadow-hover-large blog-card--blank" style="background: linear-gradient(#A58962,#876f4d);">
+                            <h3 class="uk-heading-divider uk-text-capitalize"><a class="uk-link-reset" href="{{p.url}}">{{ p.title }} <span class="uk-margin-small-right" uk-icon="icon: chevron-right" uk-scrollspy="cls: uk-animation-slide-left; repeat: true"></span></a></h3>
+                            <p>{{p.summary}}</p>
                         </div>
                     {% endif %}
 
