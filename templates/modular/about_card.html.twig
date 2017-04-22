@@ -2,30 +2,32 @@
 
 <div class="uk-section uk-section-muted">
   <div class="uk-container uk-container-medium">
-    <div class="uk-card uk-card-default uk-grid-collapse uk-margin" uk-grid>
-        <div class="uk-flex-last@s uk-width-1-2@s uk-card-media-right uk-cover-container">
-            <img src="{{ first_image.url }}" alt="O Nas Ilustracja" uk-cover>
-            <canvas width="600" height="400"></canvas>
-        </div>
-        <div class="uk-width-1-2@s">
-            <div class="uk-card-body uk-position-relative">
-                <h3 class="uk-card-title uk-margin-remove-bottom">{{ page.title }}</h3>
-                <div class="uk-position-top-right uk-overlay uk-overlay-default">
-                  <p class="uk-text-meta uk-margin-remove-top">
-                    <time datetime="{{ post.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}">
-                        <span>{{ post.date|date('d') }}
-                            {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}
-                            {{ post.date|date('Y') }}</span>
-                    </time>
-                  </p>
-                </div>
-                <hr class="uk-divider-small">
-                <p>{{ page.content }}</p>
-                <hr class="uk-divider-icon">
-                <p>{{ dump(page) }}</p>
-                <a href="{{ base_url }}{{ page.header.custom.about_path }}" class="uk-button uk-button-text">Więcej</a>
-            </div>
-        </div>
-    </div>
+    
+      <div class="uk-card uk-card-default uk-grid-collapse uk-margin uk-margin-remove-left" uk-grid>
+          <div class="uk-flex-last@s uk-width-1-2@s uk-card-media-right uk-cover-container">
+              <img src="{{ first_image.url }}" alt="O Nas Ilustracja" uk-cover>
+              <canvas width="600" height="400"></canvas>
+          </div>
+          <div class="uk-width-1-2@s">
+              <div class="uk-card-body uk-position-relative">
+                  <h3 class="uk-card-title uk-margin-remove-bottom">{{ page.title }}</h3>
+                  <div class="uk-position-top-right uk-overlay uk-overlay-default">
+                    <p class="uk-text-meta uk-margin-remove-top">
+                      <time datetime="{{ post.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}">
+                          <span>{{ post.date|date('d') }}
+                              {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}
+                              {{ post.date|date('Y') }}</span>
+                      </time>
+                    </p>
+                  </div>
+                  <hr class="uk-divider-small">
+                  <p>{{ page.content }}</p>
+                  <hr class="uk-divider-icon">
+                  <p>{{ dump(page) }}</p>
+                  <a href="{{ base_url }}{{ page.header.custom.about_path }}" class="uk-button uk-button-default uk-width-1-3">Więcej</a>
+              </div>
+          </div>
+      </div>
+
   </div>
 </div>
