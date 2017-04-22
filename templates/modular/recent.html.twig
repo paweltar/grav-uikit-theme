@@ -1,71 +1,56 @@
-<div class="uk-section uk-section-muted">
-    <div class="uk-container uk-container-small">
-        <h1 class="uk-heading-divider">Ostatnie wpisy na blogu:</h1>
-        <br>
+<div class="uk-section uk-section-muted uk-preserve-color">
+    <div class="uk-container">
+        <h1 class="uk-heading-line uk-text-center">
+            <span>Ostatnie wpisy na blogu</span>
+        </h1>
+        <div class="uk-child-width-1-2@m uk-child-width-1-3@l uk-grid-match" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 500" uk-grid>
+            {% for p in page.find('/blog').children.order('date', 'desc').slice(0, 6) %}
+                {% set first_image = p.media.images | first %}
+                {% set blog = p.collection() %}
+                <div class="">
+                    {% if first_image %}
+                        <div class="uk-card uk-card-default uk-box-shadow-small uk-box-shadow-hover-large">
+                            <div class="uk-card-media-top uk-background-cover uk-height-medium uk-position-relative" style="background-image: linear-gradient(
+                  rgba(0, 0, 0, 0.1) 40%,
+                  rgba(0, 0, 0, 1)
+                ), linear-gradient( 0deg,
+                  rgba(0, 0, 0, 0.1) 70%,
+                  rgba(0, 0, 0, 0.9)), url({{ first_image.url }});">
+                              <div class="uk-position-top uk-overlay uk-light">
+                                <p class="uk-margin-remove">
+                                    <time datetime="{{ p.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}">
+                                        <span>{{ p.date|date('d') }}
+                                            {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}
+                                            {{ p.date|date('Y') }}</span>
+                                    </time>
+                                </p>
+                              </div>
+                              <div class="uk-position-bottom uk-overlay uk-light">
+                                {% if p.taxonomy.tag %}
+                                    <p>
+                                        {% for tag in p.taxonomy.tag %}
+                                            <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
+                                            <a href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="uk-link-reset">{{ tag }}</a>
+                                        {% endfor %}
+                                    </p>
+                                {% endif %}
+                              </div>
+                            </div>
+                            <div class="uk-card-body">
+                                <h3 class="uk-heading-bullet uk-text-capitalize">{{ p.title }}</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="uk-card uk-card-default uk-card-large uk-card-body uk-text-center uk-box-shadow-small uk-box-shadow-hover-large">
+                            <h3 class="uk-heading-divider uk-text-capitalize">{{ p.title }}</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    {% endif %}
 
-        {% for p in page.find('/blog').children.order('date', 'desc').slice(0, 5) %}
-            {% set first_image = p.media.images | first %}
-            {% set blog = p.collection() %}
-
-            <article class="uk-article">
-
-                <h1 class="uk-article-title">
-                    <a class="uk-link-reset" href="{{p.url}}">{{ p.title }}</a>
-                </h1>
-
-                <p class="uk-article-meta">
-                    <span>
-                      <time class="dt-published" datetime="{{ p.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}">
-                          <span>{{ p.date|date('d') }}
-                              {{ 'MONTHS_OF_THE_YEAR'|ta(p.date|date('n') - 1) }}
-                              {{ p.date|date('Y') }}</span>
-                      </time>
-                    </span>
-                    <p>{% if p.taxonomy.tag %}
-                        <span>
-                            {% for tag in p.taxonomy.tag %}
-                                <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
-                                <a href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="uk-link-reset">{{ tag }}</a>
-                            {% endfor %}
-                        </span>
-                    {% endif %}</p>
-                </p>
-
-                <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                <div class="uk-grid-small uk-child-width-auto" uk-grid>
-                    <div>
-                        <a class="uk-button uk-button-text" href="#">Read more</a>
-                    </div>
-                    <div>
-                        <a class="uk-button uk-button-text" href="#">5 Comments</a>
-                    </div>
                 </div>
 
-            </article>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </div>
-
-<!-- <div class="recent-post">
-    {% if first_image %}
-        <div class="recent-post-image">{{ first_image.cropZoom(60,60).quality(60) }}</div>
-    {% else %}
-        <div class="recent-post-image"><img src="{{ url('theme://images/logo.png') }}" width="60" height="60"></div>
-    {% endif %}
-    <div class="recent-post-text">
-        <h4>
-            <a href="{{p.url}}">{{ p.title }}</a>
-        </h4>
-        <span class="list-blog-date">
-            <time class="dt-published" datetime="{{ post.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}">
-                <span>{{ post.date|date('d') }}
-                    {{ 'MONTHS_OF_THE_YEAR'|ta(post.date|date('n') - 1) }}
-                    {{ post.date|date('Y') }}</span>
-            </time>
-        </span>
-    </div>
-</div> -->
