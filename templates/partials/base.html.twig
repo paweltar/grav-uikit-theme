@@ -30,7 +30,7 @@
 <body class="{{ page.header.body_classes }}">
 
 {% block header %}
-  <nav class="uk-navbar-container navigation--desktop uk-visible@s" uk-navbar>
+  <nav class="uk-navbar-container navigation--desktop uk-box-shadow-small uk-visible@s" style="z-index: 980;"  uk-sticky="show-on-up: true; animation: uk-animation-slide-top; bottom: #bottom" uk-navbar>
 
       <div class="uk-navbar-left">
           <ul class="uk-navbar-nav">
@@ -48,7 +48,7 @@
 
   </nav>
 
-  <nav class="uk-navbar uk-navbar-container navigation--mobile uk-hidden@s">
+  <nav class="uk-navbar uk-navbar-container uk-box-shadow-small navigation--mobile uk-hidden@s" style="z-index: 980;"  uk-sticky="show-on-up: true; animation: uk-animation-slide-top; bottom: #bottom">
       <div class="uk-navbar-left">
           <a class="uk-navbar-toggle" href="#modal-full" uk-toggle>
               <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span>
