@@ -10237,6 +10237,11 @@ time > span {
 article img {
   width: 100%; }
 
+article figcaption {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #999; }
+
 .blog-card--blank {
   padding-bottom: 70px; }
 

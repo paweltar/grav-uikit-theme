@@ -1,0 +1,36 @@
+
+{% set pagination = pagination|default(page.collection.params.pagination) %}
+{% set base_url = base_url|default(page.url) %}
+
+{% if pagination|length > 1 %}
+
+<ul class="uk-pagination uk-flex-center uk-margin-medium-top">
+    {% if pagination.hasPrev %}
+        {% set url =  (base_url ~ pagination.params ~ pagination.prevUrl)|replace({'//':'/'}) %}
+        <li><a rel="prev" href="{{ url }}"><span uk-pagination-previous></span></a></li>
+    {% else %}
+        <li class="uk-disabled"><a href=""><span uk-pagination-previous></span></a></li>
+    {% endif %}
+
+    {% for paginate in pagination %}
+
+        {% if paginate.isCurrent %}
+            <li class="uk-active"><span>{{ paginate.number }}</span></li>
+        {% elseif paginate.isInDelta %}
+            {% set url = (base_url ~ pagination.params ~ paginate.url)|replace({'//':'/'}) %}
+            <li><a href="{{ url }}">{{ paginate.number }}</a></li>
+        {% elseif paginate.isDeltaBorder %}
+            <li class="uk-disabled"><span>...</span></li>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if pagination.hasNext %}
+        {% set url = (base_url ~ pagination.params ~ pagination.nextUrl)|replace({'//':'/'}) %}
+        <li><a rel="next" href="{{ url }}"><span uk-pagination-next></span></a></li>
+    {% else %}
+        <li class="uk-disabled"><a href=""><span uk-pagination-next></span></a></li>
+    {% endif %}
+</ul>
+
+{% endif %}
