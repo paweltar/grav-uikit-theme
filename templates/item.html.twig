@@ -50,11 +50,13 @@
             </div>
         {% endif %}
 
-        <div class="uk-section-default uk-section-xsmall section--breadcrumbs">
-            <div class="uk-container uk-flex uk-flex-between uk-container-large">
-                <p class="article__meta-info"><span uk-icon="icon: clock"></span> {{ page.content|readingtime({'minutes_label':'Minut','minute_label':'Minuta', 'seconds_label': 'Sekund', 'second_label': 'Sekunda'}) }}</p>
-            </div>
-        </div>
+        {% if config.plugins.readingtime.enabled %}
+          <div class="uk-section-default uk-section-xsmall section--breadcrumbs">
+              <div class="uk-container uk-flex uk-flex-between uk-container-large">
+                  <p class="article__meta-info"><span uk-icon="icon: clock"></span> {{ page.content|readingtime({'minutes_label':'Minut','minute_label':'Minuta', 'seconds_label': 'Sekund', 'second_label': 'Sekunda'}) }}</p>
+              </div>
+          </div>
+        {% endif %}
 
 
         <div class="uk-section uk-section-default">
