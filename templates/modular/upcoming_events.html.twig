@@ -1,7 +1,7 @@
 {% set first_image = page.media.images | first %}
 {% set collection = page.children %}
 
-<div class="uk-section uk-text-center uk-section-media uk-light uk-background-cover" style="background-image: linear-gradient(
+<div class="uk-section uk-text-center uk-section-media uk-preserve-color uk-light uk-background-cover" style="background-image: linear-gradient(
 rgba(0, 0, 0, 0.7),
 rgba(0, 0, 0, 0.7)
 ), url({{ first_image.url }})">
@@ -16,10 +16,10 @@ rgba(0, 0, 0, 0.7)
             {% set event_image = event.media.images | first %}
 
             <div class="uk-card uk-card-default uk-grid-collapse uk-margin uk-margin-remove-left uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded uk-overflow-hidden" uk-grid>
-                <div class="uk-card-media-left uk-cover-container uk-width-1-3" style="background-image: url({{ event_image.url }})"></div>
+                <div class="uk-card-media-left uk-cover-container uk-width-1-3@s" style="background-image: url({{ event_image.url }})"></div>
                 <div class="uk-width-expand">
                     <div class="uk-card-body uk-text-left">
-                        <h3 class="uk-card-title">{{ event.title }}</h3>
+                        <h3 class="uk-card-title"><a class="uk-link-reset" href="{{ event.url }}">{{ event.title }}</a></h3>
                         <p>{{event.summary |safe_truncate(150) }} (...)</p>
                     </div>
                 </div>
