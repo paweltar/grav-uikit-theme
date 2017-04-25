@@ -24,6 +24,9 @@ en:
   FORM_DATA:
     SUMMARY: "Here is the summary of what you wrote to us:"
   ERROR: Error
+  POPULAR TAGS: Popular Tags
+  RECENT PROJECTS: Recent Projects
+  CONTACT: Contact
 
 pl:
   TRANSLATION_TEST: Uikit theme!
@@ -51,3 +54,6 @@ pl:
   FORM_DATA:
     SUMMARY: "Oto streszczenie tego co do nas napisałeś:"
   ERROR: Błąd
+  POPULAR TAGS: Popularne Tagi
+  RECENT PROJECTS: Ostatnie Projekty
+  CONTACT: Kontakt
