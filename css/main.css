@@ -47,4 +47,10 @@ article figcaption {
   text-decoration: none;
   text-transform: uppercase; }
 
+.tag-cloud--footer a {
+  font-size: 12px; }
+
+.tag-cloud--footer.tag--largest {
+  color: #FF6138; }
+
 /*# sourceMappingURL=main.css.map */

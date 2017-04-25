@@ -7,7 +7,7 @@
   {% if config.plugins.tagcloud.threshold is defined %}
     {% set threshold = config.plugins.tagcloud.threshold %}
   {% endif %}
-<div id="tagcloud">
+<div id="tagcloud" class="tag-cloud--footer" uk-scrollspy="cls: uk-animation-fade; target: > span; delay: 250;">
   {% for tax,value in taxlist['tag']|ksort %}
     {% set percent = (value / max) * 100 %}
     {% if percent > threshold %}
@@ -21,7 +21,7 @@
       {% elseif percent >= 50 and percent < 80 %}
         {% set class = 'tag--large' %}
       {% endif %}
-      <span class="{{ class }}" title="{{ value }} posts"><a href="{{ base_url }}/wszystkie-wpisy/tag{{ config.system.param_sep }}{{ tax|e('url') }}">{{ tax }}</a></span>
+      <span class="{{ class }}" title="{{ value }} posts"><a class="uk-button uk-button-default uk-button-small uk-margin-small uk-margin-small-right uk-border-rounded" href="{{ base_url }}/wszystkie-wpisy/tag{{ config.system.param_sep }}{{ tax|e('url') }}"><span uk-icon="icon: tag"></span> {{ tax }} ({{value}})</a></span>
     {% endif %}
   {% endfor %}
 </div>

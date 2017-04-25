@@ -28,3 +28,24 @@ article {
   text-decoration: none;
   text-transform: uppercase;
 }
+
+.tag-cloud--footer {
+  a {
+    font-size: 12px;
+  }
+  &.tag--largest {
+    color: #FF6138;
+  }
+  &.tag--smallest {
+
+  }
+  &.tag--small {
+
+  }
+  &.tag--medium {
+
+  }
+  &.tag--large {
+
+  }
+}
