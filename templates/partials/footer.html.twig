@@ -1,4 +1,15 @@
-<div class="uk-section uk-section-secondary uk-light">
+{% set footer_image = config.site.footer_background | first %}
+
+<div class="uk-section uk-section-media uk-light uk-background-cover uk-section-xsmall uk-background-fixed" style="background-image: linear-gradient(
+rgba(0, 0, 0, 0.7),
+rgba(0, 0, 0, 0.7)
+), url({{ url(footer_image.path) }})">
+  <div class="uk-container">
+      <p class="uk-heading-line uk-text-center"><span><a href="#" uk-totop uk-scroll></a></span></p>
+</div>
+</div>
+
+<div class="uk-section uk-section-secondary uk-light uk-box-shadow-small">
     <div class="uk-container">
 
         <div class="uk-grid-match uk-child-width-1-2@m uk-child-width-1-4@l" uk-grid>
@@ -24,15 +35,11 @@
     </div>
 </div>
 
-<div class="uk-section uk-section-secondary uk-light uk-padding-remove-vertical">
-    <div class="uk-container">
-        <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
-            <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-            </div>
-            <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-            </div>
-        </div>
+<div class="uk-section uk-section-media uk-light uk-background-cover uk-section-xsmall uk-background-fixed" style="background-image: linear-gradient(
+rgba(0, 0, 0, 0.7),
+rgba(0, 0, 0, 0.7)
+), url({{ url(footer_image.path) }})">
+    <div class="uk-container uk-container-small">
+      <p class="uk-text-meta uk-margin-small-right uk-text-center uk-heading-line"><a class="uk-link-muted" href="{{ base_url == '' ? '/' : base_url }}" target="blank">{{ config.site.title }} {{ config.site.subtitle }} | {{ "now"|date("Y") }} &copy;</a></p>
     </div>
 </div>
