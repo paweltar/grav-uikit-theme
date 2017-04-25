@@ -1,0 +1,55 @@
+<div class="list-item h-entry">
+
+    <div class="list-blog-padding">
+
+        {% if page.header.continue_link is sameas(false) %}
+            <div class="e-content">
+                {{ page.content }}
+            </div>
+            {% if not truncate %}
+                {% set show_prev_next = true %}
+            {% endif %}
+        {% elseif truncate and page.summary != page.content %}
+            <div class="p-summary e-content">
+                {{ page.summary }}
+                <p>
+                    <a href="{{ page.url }}">{{ 'BLOG.ITEM.CONTINUE_READING'|t }}</a>
+                </p>
+            </div>
+        {% elseif truncate %}
+            <div class="p-summary e-content">
+                {{ page.content }}
+                <p>
+                    <a href="{{ page.url }}">{{ 'BLOG.ITEM.CONTINUE_READING'|t }}</a>
+                </p>
+            </div>
+        {% else %}
+            <article class="uk-article uk-animation-fade">
+                {{ page.content }}
+            </article>
+
+            {% if config.plugins.comments.enabled %}
+                {% include 'partials/comments.html.twig' %}
+            {% endif %}
+
+            {% set show_prev_next = true %}
+        {% endif %}
+
+        {% if show_prev_next %}
+            <hr>
+            <div class="uk-grid-small uk-child-width-expand uk-text-center uk-margin-medium-top uk-grid-divider" uk-grid>
+                <div>
+                  {% if not page.isLast %}
+                    <a class="uk-button uk-button-text" href="{{ page.prevSibling.url }}">{{ 'BLOG.ITEM.PREV_POST'|t }}</a>
+                  {% endif %}
+                </div>
+                <div>
+                  {% if not page.isFirst %}
+                    <a class="uk-button uk-button-text" href="{{ page.nextSibling.url }}">{{ 'BLOG.ITEM.NEXT_POST'|t }}</a>
+                  {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
