@@ -6,7 +6,7 @@ h5,
 h6 {
   font-family: EB Garamond, serif; }
 
-time > span {
+time > span, .event-location > span {
   font-family: EB Garamond;
   font-style: italic;
   font-size: 22px; }

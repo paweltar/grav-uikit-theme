@@ -1,0 +1,79 @@
+{% embed 'partials/base.html.twig' %}
+
+    {% block content %}
+
+        {% set header_image = page.header.header_image | defined(true) %}
+        {% set header_image_file = page.header.header_image_file %}
+
+        {% if header_image %}
+            {% if header_image_file %}
+                {% set header_image_media = page.media.images[header_image_file] %}
+            {% else %}
+                {% set header_image_media = page.media.images | first %}
+            {% endif %}
+            <div class="uk-section uk-position-relative uk-section-xlarge uk-section-media uk-light uk-background-cover" style="background-image: linear-gradient(
+  rgba(0, 0, 0, 0.1) 40%,
+  rgba(0, 0, 0, 0.9)
+), url({{ header_image_media.url }})">
+                <div class="uk-container uk-text-center" uk-scrollspy="target: > h1,p; cls:uk-animation-slide-bottom-small; delay: 500">
+                    <h1 class="uk-text-capitalize">{{ page.title }}</h1>
+                    <p class="uk-margin-remove">
+                        <em>
+                          <time datetime="{{ page.header.custom.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(page.header.custom.date|date('n') - 1) }}">
+                            <span class="uk-margin-small-right" uk-icon="icon: calendar"></span>
+                              <span>{{ page.header.custom.date|date('d') }}
+                                  {{ 'MONTHS_OF_THE_YEAR'|ta(page.header.custom.date|date('n') - 1) }}
+                                  {{ page.header.custom.date|date('Y') }}</span>
+                          </time>
+                        </em>
+                    </p>
+                    <p class="uk-margin-remove">
+                        <em>
+                          <time datetime="{{ page.header.custom.date|date('d') }}">
+                            <span class="uk-margin-small-right" uk-icon="icon: clock"></span>
+                              <span>{{ page.header.custom.date|date('H:i') }}</span>
+                          </time>
+                        </em>
+                    </p>
+                    <p class="uk-margin-remove event-location">
+                      <span class="uk-margin-small-right" uk-icon="icon: location"></span>
+                      <span>{{ page.header.custom.place }}</span>
+                    </p>
+                </div>
+            </div>
+
+        {% endif %}
+
+        {% if config.plugins.breadcrumbs.enabled %}
+            <div class="uk-section-muted uk-section-xsmall section--breadcrumbs">
+                <div class="uk-container uk-container-large">
+                    {% include 'partials/breadcrumbs.html.twig' %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if config.plugins.readingtime.enabled %}
+          <div class="uk-section-default uk-section-xsmall section--breadcrumbs">
+              <div class="uk-container uk-flex uk-flex-between uk-container-large">
+                  <p class="article__meta-info"><span uk-icon="icon: clock"></span> {{ page.content|readingtime({'minutes_label':'Minut','minute_label':'Minuta', 'seconds_label': 'Sekund', 'second_label': 'Sekunda'}) }}</p>
+              </div>
+          </div>
+        {% endif %}
+
+
+        <div class="uk-section uk-section-default">
+            <div class="uk-container">
+                <div class="uk-margin-top uk-grid-divider" uk-grid>
+                    <div class="uk-width-2-3@m">
+                        {% include 'partials/blog_item.html.twig' with {'blog': page.parent, 'truncate': false} %}
+                    </div>
+                    <div class="uk-width-1-3@m">
+                        {% include 'partials/sidebar.html.twig' with {'blog':page.parent}%}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

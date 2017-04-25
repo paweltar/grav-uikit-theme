@@ -1,0 +1,30 @@
+title: Wydarzenia
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        gallery:
+          type: tab
+          title: Czas i miejsce
+
+          fields:
+            header.custom.date:
+              type: datetime
+              label: Wskaż datę i czas wydarzenia:
+              help: PLUGIN_ADMIN.DATE_HELP
+              validate:
+                required: true
+
+            header.custom.place:
+              type: text
+              label: Wskaż miejsce wydarzenia
+              default: Opatów
+              validate:
+                required: true

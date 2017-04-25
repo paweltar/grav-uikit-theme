@@ -9,7 +9,7 @@ h6 {
     font-family: $main-font;
 }
 
-time {
+time, .event-location {
     & > span {
         font-family: EB Garamond;
         font-style: italic;
