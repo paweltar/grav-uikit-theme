@@ -14,16 +14,15 @@
     <link rel="stylesheet" href="//brick.a.ssl.fastly.net/EB+Garamond:400,400i">
     <link rel="canonical" href="{{ page.url(true, true) }}" />
 
+    {% block javascripts %}
+        {% do assets.addJs('theme://js/main.js', 99) %}
+    {% endblock %}
+    {{ assets.js() }}
+
     {% block stylesheets %}
         {% do assets.addCss('theme://css/main.css', 100) %}
     {% endblock %}
     {{ assets.css() }}
-
-    {% block javascripts %}
-        {% do assets.addJs('jquery', 100) %}
-        {% do assets.addJs('theme://js/main.js', 99) %}
-    {% endblock %}
-    {{ assets.js() }}
 
 {% endblock head%}
 </head>

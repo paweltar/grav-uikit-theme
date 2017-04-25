@@ -3,6 +3,9 @@ import Icons from 'uikit/dist/js/uikit-icons';
 import $ from 'jquery';
 import slick from 'slick-carousel';
 
+import uikitCss from 'uikit/dist/css/uikit.css'
+import slickCss from 'slick-carousel/slick/slick.css';
+
 UIkit.use(Icons);
 
 $(document).ready(function() {
