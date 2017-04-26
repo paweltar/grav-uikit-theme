@@ -39,16 +39,21 @@
             <hr>
             <div class="uk-grid-small uk-child-width-expand uk-text-center uk-margin-medium-top uk-grid-divider" uk-grid>
                 <div>
-                  {% if not page.isLast %}
-                    <a class="uk-button uk-button-text" href="{{ page.prevSibling.url }}">{{ 'BLOG.ITEM.PREV_POST'|t }}</a>
-                  {% endif %}
+                    {% if not page.isLast %}
+                        <a class="uk-button uk-button-text" href="{{ page.prevSibling.url }}">{{ 'BLOG.ITEM.PREV_POST'|t }}</a>
+                    {% endif %}
                 </div>
                 <div>
-                  {% if not page.isFirst %}
-                    <a class="uk-button uk-button-text" href="{{ page.nextSibling.url }}">{{ 'BLOG.ITEM.NEXT_POST'|t }}</a>
-                  {% endif %}
+                    {% if not page.isFirst %}
+                        <a class="uk-button uk-button-text" href="{{ page.nextSibling.url }}">{{ 'BLOG.ITEM.NEXT_POST'|t }}</a>
+                    {% endif %}
                 </div>
             </div>
+        {% endif %}
+
+        {% if config.plugins.relatedpages.enabled and related_pages | length > 0 %}
+            <h4>Zobacz też:</h4>
+            {% include 'partials/relatedpages/relatedpages-bottom.html.twig' %}
         {% endif %}
 
     </div>
