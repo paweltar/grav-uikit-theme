@@ -1,14 +1,22 @@
-<ul class="related-pages">
-  <p>w sidebarze</p>
+<div class="related-pages">
+
     {% for related_path, score in related_pages %}
         {% set related = grav['pages'].get(related_path) %}
         {% if related %}
-            <li>
-                {% if config.plugins.relatedpages.show_score %}
-                    <span class="score">{{ score }}</span>
-                {% endif %}
-                <a href="{{ related.url }}" title="{{ related.title }}">{{ related.title }}</a>
-            </li>
+
+            <dl class="uk-description-list uk-description-list-divider">
+                <dt>
+                    <a class="uk-link-reset" href="{{ related.url }}" title="{{ related.title }}">{{ related.title }}</a>
+                </dt>
+                <dd>
+                    <time datetime="{{ related.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(related.date|date('n') - 1) }}">
+                        <span><span class="uk-margin-small-right" uk-icon="icon: calendar"></span> {{ related.date|date('d') }}
+                            {{ 'MONTHS_OF_THE_YEAR'|ta(related.date|date('n') - 1) }}
+                            {{ related.date|date('Y') }}</span>
+                    </time>
+                </dd>
+            </dl>
+
         {% endif %}
     {% endfor %}
-</ul>
+</div>
