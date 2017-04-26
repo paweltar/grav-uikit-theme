@@ -53,3 +53,8 @@ gulp.task('default', function() {
 gulp.task('build', function() {
   runSequence('clean:dist', 'run');
 });
+
+gulp.task('watch', function() {
+  gulp.watch('src/scripts/**/*', ['js']);
+  gulp.watch('src/styles/**/*', ['css']);
+});
