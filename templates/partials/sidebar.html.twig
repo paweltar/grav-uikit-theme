@@ -19,12 +19,12 @@
 {% endif %}
 <div class="sidebar-content">
 	<h4>{{ 'SIDEBAR.SOME_TEXT_WIDGET.HEADLINE'|t }}</h4>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+	<p>{{ config.site.sidebar.widget.text|markdown }}</p>
 </div>
 {% if config.plugins.taxonomylist.enabled %}
 <div class="sidebar-content">
     <h4>{{ 'SIDEBAR.POPULAR_TAGS.HEADLINE'|t }}</h4>
-    {% include 'partials/taxonomylist.html.twig' with {'base_url':new_base_url, 'taxonomy':'tag'} %}
+    {% include 'partials/tagcloud.html.twig' %}
 </div>
 {% endif %}
 {% if config.plugins.archives.enabled %}
