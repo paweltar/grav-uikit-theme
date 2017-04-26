@@ -1,12 +1,17 @@
 {% set footer_image = config.site.footer_background | first %}
+{% set collection = page.find('/projekty').children.order('date', 'desc').slice(0, 5) %}
 
 <div class="uk-section uk-section-media uk-light uk-background-cover uk-section-xsmall uk-background-fixed" style="background-image: linear-gradient(
 rgba(0, 0, 0, 0.7),
 rgba(0, 0, 0, 0.7)
 ), url({{ url(footer_image.path) }})">
-  <div class="uk-container">
-      <p class="uk-heading-line uk-text-center"><span><a href="#" uk-totop uk-scroll></a></span></p>
-</div>
+    <div class="uk-container">
+        <p class="uk-heading-line uk-text-center">
+            <span>
+                <a href="#" uk-totop uk-scroll></a>
+            </span>
+        </p>
+    </div>
 </div>
 
 <div class="uk-section uk-section-secondary uk-light uk-box-shadow-small">
@@ -14,35 +19,71 @@ rgba(0, 0, 0, 0.7)
 
         <div class="uk-child-width-1-2@m uk-child-width-1-4@l" uk-grid>
             <div>
-                <a href="{{ base_url == '' ? '/' : base_url }}"><h3 class="uk-margin-remove-bottom">{{ config.site.title }}<br><span class="site__subtitle"> <em>{{ config.site.subtitle }}</em></span></h3></a>
+                <a class="uk-link-reset" href="{{ base_url == '' ? '/' : base_url }}">
+                    <h3 class="uk-margin-remove-bottom">{{ config.site.title }}<br>
+                        <span class="site__subtitle">
+                            <em>{{ config.site.subtitle }}</em>
+                        </span>
+                    </h3>
+                </a>
                 <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-            </div>
-
-            {% if config.plugins.tagcloud.enabled %}
-              <div>
-                  <h3>{{'POPULAR TAGS'|t}}</h3>
-                  <p>{% include 'partials/tagcloud.html.twig' %}</p>
-              </div>
-            {% endif %}
-            <div>
-                <h3>{{'RECENT PROJECTS'|t}}</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-            </div>
-            <div>
-                <h3>{{'CONTACT'|t}}</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-            </div>
+                <ul class="uk-nav uk-nav-default">
+                    <li>
+                        <p class="uk-margin-top">Wszystkich, którzy chcieliby wspomóc działania naszego Stowarzyszenia zapraszamy do współpracy:</p>
+                    </li>
+                    <li class="uk-heading-bullet uk-margin-bottom">Jak pomóc?</li>
+                    <ul class="uk-list uk-list-bullet">
+                        <li>Jeśli chcesz wpłacić darowiznę na cele statutowe stowarzyszenia to dokonaj wpłaty na na nr konta
+                            <b>36 1240 2773 1111 0000 3682 5929</b>.</li>
+                    </ul>
+                <li class="uk-margin-top">Za wszystkie formy wsparcia serdecznie dziękujemy.</li>
+            </ul>
         </div>
 
+        {% if config.plugins.tagcloud.enabled %}
+            <div>
+                <h3>{{'POPULAR TAGS'|t}}</h3>
+                <p>{% include 'partials/tagcloud.html.twig' %}</p>
+            </div>
+        {% endif %}
+        <div>
+            <h3>{{'RECENT PROJECTS'|t}}</h3>
+            {% for p in collection %}
+                {{ dump(p) }}
+                <a class="uk-text-uppercase" href="{{ base_url }}{{ p.route }}"><p>{{ p.title }}</p></a>
+            {% endfor %}
+            <hr>
+            <a class="uk-text-uppercase" href="{{ base_url }}/projekty"><p>Wszystkie Projekty</p></a>
+        </div>
+        <div>
+            <h3>{{'CONTACT'|t}}</h3>
+            <ul class="uk-nav uk-nav-default">
+                <li>
+                    <span class="uk-text-meta uk-margin-small-right">poczta:</span>27-500 Opatów</li>
+                <li>
+                    <span class="uk-text-meta uk-margin-small-right">adres:</span>Wąworków 34</li>
+                <li>
+                    <span class="uk-text-meta uk-margin-small-right">telefon:</span>888 210 924</li>
+                <li>
+                    <span class="uk-text-meta uk-margin-small-right">KRS:</span>0000044263</li>
+            </ul>
+        </div>
     </div>
+
+</div>
 </div>
 
 <div class="uk-section uk-section-media uk-light uk-background-cover uk-section-xsmall uk-background-fixed" style="background-image: linear-gradient(
 rgba(0, 0, 0, 0.7),
 rgba(0, 0, 0, 0.7)
 ), url({{ url(footer_image.path) }})">
-    <div class="uk-container">
-      <p class="uk-text-meta uk-margin-small-right uk-text-center uk-heading-line"><a class="uk-link-muted" href="{{ base_url == '' ? '/' : base_url }}" target="blank">{{ config.site.title }} {{ config.site.subtitle }} | {{ "now"|date("Y") }} &copy;</a></p>
-    </div>
+<div class="uk-container">
+    <p class="uk-text-meta uk-margin-small-right uk-text-center uk-heading-line">
+        <a class="uk-link-muted" href="{{ base_url == '' ? '/' : base_url }}" target="blank">{{ config.site.title }}
+            {{ config.site.subtitle }}
+            |
+            {{ "now"|date("Y") }}
+            &copy;</a>
+    </p>
+</div>
 </div>
