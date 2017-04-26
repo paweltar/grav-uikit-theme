@@ -50,10 +50,10 @@ rgba(0, 0, 0, 0.7)
             <h3>{{'RECENT PROJECTS'|t}}</h3>
             {% for p in collection %}
                 {{ dump(p) }}
-                <a class="uk-text-uppercase" href="{{ base_url }}{{ p.route }}"><p>{{ p.title }}</p></a>
+                <a class="uk-text-uppercase" href="{{ base_url }}{{ p.route }}"><p><span class="uk-margin-small-right" uk-icon="icon:  chevron-right"></span> {{ p.title }}</p></a>
             {% endfor %}
             <hr>
-            <a class="uk-text-uppercase" href="{{ base_url }}/projekty"><p>Wszystkie Projekty</p></a>
+            <a class="uk-text-uppercase" href="{{ base_url }}/projekty"><p><span class="uk-margin-small-right" uk-icon="icon: chevron-right"></span> Wszystkie Projekty</p></a>
         </div>
         <div>
             <h3>{{'CONTACT'|t}}</h3>
