@@ -24,7 +24,7 @@ rgba(0, 0, 0, 0.5)
                 <div class="uk-width-expand">
                     <div class="uk-card-body uk-text-left">
                         <h3 class="uk-card-title uk-margin-remove-bottom">
-                            <a class="uk-link-reset" href="{{ event.url }}">{{ event.title }}</a>
+                            <a class="uk-link-reset" href="{{ event.url }}">{{ event.title }}<span class="uk-margin-small-right" uk-icon="icon: chevron-right" uk-scrollspy="cls: uk-animation-slide-left; repeat: true"></span></a>
                         </h3>
                           <p class="uk-margin-remove">
                               <time datetime="{{ event.header.custom.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(event.header.custom.date|date('n') - 1) }}">

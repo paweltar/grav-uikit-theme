@@ -30,9 +30,9 @@
 
                 <div class="uk-overlay uk-dark uk-position-bottom">
                     {% if page.taxonomy.tag %}
-                        <span uk-scrollspy="target: > *; cls:uk-animation-slide-left-small; delay: 225">
+                        <span uk-scrollspy="target: > *; cls:uk-animation-slide-left-small; delay: 225" uk-margin>
                             {% for tag in page.taxonomy.tag %}
-                                <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
+                                <span uk-icon="icon: tag"></span>
                                 <a href="{{ page.parent.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="p-category">{{ tag }}</a>
                             {% endfor %}
                         </span>

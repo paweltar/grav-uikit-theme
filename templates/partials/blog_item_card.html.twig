@@ -24,9 +24,9 @@
                         </time>
                     </p>
                     {% if page.taxonomy.tag %}
-                        <span>
+                        <span uk-margin>
                             {% for tag in page.taxonomy.tag %}
-                                <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
+                                <span uk-icon="icon: tag"></span>
                                 <a href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="uk-link-reset">{{ tag }}</a>
                             {% endfor %}
                         </span>
