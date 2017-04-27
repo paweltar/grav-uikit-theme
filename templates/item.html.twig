@@ -11,10 +11,10 @@
             {% else %}
                 {% set header_image_media = page.media.images | first %}
             {% endif %}
-            <div class="uk-section uk-position-relative uk-section-xlarge uk-section-media uk-light uk-background-cover" style="background-image: linear-gradient(
+            <div class="uk-section uk-position-relative uk-section-xlarge uk-section-media uk-light uk-background-cover uk-background-fixed" style="background-image: linear-gradient(
   rgba(0, 0, 0, 0.1) 40%,
   rgba(0, 0, 0, 0.9)
-), url({{ header_image_media.url }})">
+), url({{ header_image_media.brightness(-35).url }})">
                 <div class="uk-container uk-text-center" uk-scrollspy="target: > h1,p; cls:uk-animation-slide-bottom-small; delay: 500">
                     <h1 class="uk-text-capitalize">{{ page.title }}</h1>
                     <p>
@@ -51,7 +51,12 @@
         {% endif %}
 
         {% if config.plugins.readingtime.enabled %}
-          <div class="uk-section-default uk-section-xsmall section--breadcrumbs">
+        {% set background_image = header_image_media.quality(70).smooth(10) %}
+
+          <div class="uk-section-default uk-section-xsmall uk-background-fixed section--breadcrumbs uk-section-media uk-light uk-background-cover" style="background-image: linear-gradient(
+          rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.7)
+          ), url({{ background_image.url }})">
               <div class="uk-container uk-flex uk-flex-between uk-container-large">
                   <p class="article__meta-info"><span uk-icon="icon: clock"></span> {{ page.content|readingtime({'minutes_label':'Minut','minute_label':'Minuta', 'seconds_label': 'Sekund', 'second_label': 'Sekunda'}) }}</p>
               </div>
