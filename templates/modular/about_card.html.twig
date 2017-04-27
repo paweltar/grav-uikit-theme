@@ -1,4 +1,4 @@
-{% set first_image = page.media.images|first %}
+{% set first_image = page.find('/home').media.images|first %}
 
 <div class="uk-section uk-section-muted">
   <div class="uk-container uk-container-medium">
@@ -24,7 +24,7 @@
                   <p>{{ page.content }}</p>
                   <hr class="uk-divider-icon">
                   <p>{{ dump(page) }}</p>
-                  <a href="{{ base_url }}{{ page.header.custom.about_path }}" class="uk-button uk-button-default uk-width-1-3">Więcej</a>
+                  <a href="{{ base_url }}{{ page.header.custom.about_path }}" class="uk-button uk-button-default uk-width-auto">Więcej</a>
               </div>
           </div>
       </div>

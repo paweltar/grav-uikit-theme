@@ -53,9 +53,9 @@
         {% if config.plugins.readingtime.enabled %}
         {% set background_image = header_image_media.quality(70).smooth(10) %}
 
-          <div class="uk-section-default uk-section-xsmall uk-background-fixed section--breadcrumbs uk-section-media uk-light uk-background-cover" style="background-image: linear-gradient(
-          rgba(0, 0, 0, 0.7),
-          rgba(0, 0, 0, 0.7)
+          <div class="uk-section-default uk-section-xsmall uk-background-fixed section--breadcrumbs uk-section-media uk-dark uk-background-cover" style="background-image: linear-gradient(
+          rgba(255, 255, 255, 0.5),
+          rgba(255, 255, 255, 1)
           ), url({{ background_image.url }})">
               <div class="uk-container uk-flex uk-flex-between uk-container-large">
                   <p class="article__meta-info"><span uk-icon="icon: clock"></span> {{ page.content|readingtime({'minutes_label':'Minut','minute_label':'Minuta', 'seconds_label': 'Sekund', 'second_label': 'Sekunda'}) }}</p>
