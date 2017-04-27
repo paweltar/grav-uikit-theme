@@ -60,7 +60,7 @@
         <button class="uk-modal-close-full" type="button" uk-close></button>
         <div class="uk-flex uk-flex-center uk-flex-middle nav__container">
             <ul class="uk-nav-primary uk-nav-center uk-nav-parent-icon" uk-nav>
-                <li class="uk-nav-header">Menu</li>
+                <li class="uk-nav-header"><a href="{{ base_url == '' ? '/' : base_url }}"><h3 class="uk-margin-remove-bottom">{{ config.site.title }}<br><span class="site__subtitle"><em>{{ config.site.subtitle }}</em></span></h3></a></li>
                 <li class="uk-nav-divider"></li>
                 {% include 'partials/navigation.html.twig' %}
             </ul>
