@@ -29,14 +29,15 @@ rgba(0, 0, 0, 0.7)
                 <hr>
                 <ul class="uk-nav uk-nav-default">
                     <li>
-                        <p class="uk-margin-top">Wszystkich, którzy chcieliby wspomóc działania naszego Stowarzyszenia zapraszamy do współpracy:</p>
+                        <p class="uk-margin-top">{{ config.details.footer_text.preface }}</p>
                     </li>
-                    <li class="uk-heading-bullet uk-margin-bottom">Jak pomóc?</li>
+                    <li class="uk-heading-bullet uk-margin-bottom">{{ config.details.footer_text.list_header }}</li>
                     <ul class="uk-list uk-list-bullet">
-                        <li>Jeśli chcesz wpłacić darowiznę na cele statutowe stowarzyszenia to dokonaj wpłaty na na nr konta
-                            <b>36 1240 2773 1111 0000 3682 5929</b>.</li>
+                      {% for item in config.details.footer_text.list_item %}
+                        <li>{{ item }}</li>
+                      {% endfor %}
                     </ul>
-                <li class="uk-margin-top">Za wszystkie formy wsparcia serdecznie dziękujemy.</li>
+                <li class="uk-margin-top">{{ config.details.footer_text.closure }}</li>
             </ul>
         </div>
 
@@ -67,11 +68,17 @@ rgba(0, 0, 0, 0.7)
             <h3>{{'CONTACT'|t}}</h3>
             <ul class="uk-list uk-list-divider">
                 <li><span class="uk-margin-small-right" uk-icon="icon: location"></span>
-                27-500 Opatów</dd></li>
-                <li><span class="uk-margin-small-right" uk-icon="icon: location"></span>
-                Wąworków 34</li>
-                <li><span class="uk-margin-small-right" uk-icon="icon: phone"></span>
-                888 210 924</li>
+                {{ config.details.contact.city }}</dd></li>
+                <li><span class="uk-margin-small-right" uk-icon="icon: home"></span>
+                {{ config.details.contact.street }}</li>
+                {% for phone, type in config.details.phone %}
+                  <li><span class="uk-margin-small-right" uk-icon="icon: phone"></span>
+                  {{ type }} - {{ phone }}</li>
+                {% endfor %}
+                {% for email, type in config.details.email %}
+                  <li><span class="uk-margin-small-right" uk-icon="icon: mail"></span>
+                  {{ type }} - {{ email }}</li>
+                {% endfor %}
             </ul>
         </div>
     </div>
