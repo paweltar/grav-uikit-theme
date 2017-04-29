@@ -35,21 +35,5 @@
             {% set show_prev_next = true %}
         {% endif %}
 
-        {% if show_prev_next %}
-            <hr>
-            <div class="uk-grid-small uk-child-width-expand uk-text-center uk-margin-medium-top uk-grid-divider" uk-grid>
-                <div>
-                  {% if not page.isLast %}
-                    <a class="uk-button uk-button-text" href="{{ page.prevSibling.url }}">{{ 'BLOG.ITEM.PREV_POST'|t }}</a>
-                  {% endif %}
-                </div>
-                <div>
-                  {% if not page.isFirst %}
-                    <a class="uk-button uk-button-text" href="{{ page.nextSibling.url }}">{{ 'BLOG.ITEM.NEXT_POST'|t }}</a>
-                  {% endif %}
-                </div>
-            </div>
-        {% endif %}
-
     </div>
 </div>
