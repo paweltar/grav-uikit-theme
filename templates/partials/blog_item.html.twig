@@ -35,6 +35,29 @@
             {% set show_prev_next = true %}
         {% endif %}
 
+        {{ dump(page.media.images|first) }}
+
+        <h3 class="uk-heading-line uk-text-center">
+            <span>Wszystkie powiązane zdjęcia</span>
+        </h3>
+        <div class="uk-child-width-1-2@s uk-text-center uk-margin-medium" uk-grid uk-lightbox>
+        {% for image in page.media.images %}
+        <a class="uk-link-muted uk-text-center" href="{{ image.url }}" type="image">
+        <div
+            class="uk-background-cover uk-box-shadow-small uk-box-shadow-hover-large uk-height-medium uk-card"
+            style="background-image: linear-gradient(
+  rgba(0, 0, 0, 0.1) 40%,
+  rgba(0, 0, 0, 0.9)
+), url({{ image.url }});">
+
+
+
+            </div>
+            </a>
+        {% endfor %}
+        </div>
+
+
         {% if show_prev_next %}
             <hr>
             <div class="uk-grid-small uk-child-width-expand uk-text-center uk-margin-medium-top uk-grid-divider" uk-grid>
@@ -52,7 +75,9 @@
         {% endif %}
 
         {% if config.plugins.relatedpages.enabled and related_pages | length > 0 %}
-            <h3 class="uk-heading-line uk-text-center"><span>Czytaj Więcej</span></h3>
+            <h3 class="uk-heading-line uk-text-center">
+                <span>Czytaj Więcej</span>
+            </h3>
             {% include 'partials/relatedpages/relatedpages-bottom.html.twig' %}
         {% endif %}
 
