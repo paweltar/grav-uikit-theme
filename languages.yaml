@@ -18,7 +18,7 @@ en:
     POPULAR_TAGS:
       HEADLINE: Popular Tags
     ARCHIVES:
-      HEADLINE: Archives
+      HEADLINE: Blog Archives
     SYNDICATE:
       HEADLINE: Syndicate
   FORM_DATA:
@@ -48,7 +48,7 @@ pl:
     POPULAR_TAGS:
       HEADLINE: Popularne tagi
     ARCHIVES:
-      HEADLINE: Archiwum
+      HEADLINE: Archiwum wpisów na blogu
     SYNDICATE:
       HEADLINE: Syndicate
   FORM_DATA:
