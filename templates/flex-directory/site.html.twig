@@ -1,41 +1,50 @@
-{% set data = flex_entries.getData().toArray()|sort_by_key('item') %}
+{% set data = flex_entries.getData().toArray() | sort_by_key('item') %}
 <div id="flex-directory">
-    <div class="text-center">
-        <input class="form-input search" type="text" placeholder="Wyszukaj po haśle, tagach itp." />
-        <button class="button button-primary sort asc" data-sort="name">
-            Wyszukaj
-        </button>
+
+    <nav class="uk-navbar-container uk-margin-large-bottom" uk-navbar>
+        <div class="uk-navbar-left">
+            <div class="uk-navbar-item">
+                <form class="uk-search uk-search-large">
+                    <span uk-search-icon></span>
+                    <input class="uk-search-input form-input search" type="text" placeholder="Szukaj"/>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="list">
+      {% for entry in data if entry.published %}
+
+      <div class="entry-details">
+
+          {% for link in entry.external %}
+              <a href="{{ link.url }}">
+                  <span class="link_text">{{ link.text }}</span>
+              </a>
+          {% endfor %}
+
+          <span class="item">{{ entry.item }}</span>
+
+          {% if entry.item_definition %}
+              <p>{{ entry.item_definition }}</p>
+          {% endif %}
+      </div>
+
+      <div class="tags">
+          {% for tag in entry.tags %}
+              <span>{{ tag }}</span>
+          {% endfor %}
+      </div>
+
+      {% endfor %}
     </div>
-
-    <ul class="list">
-        {% for entry in data if entry.published %}
-            <li>
-                <div class="entry-details">
-
-                      {% for link in entry.external %}
-                        <a href="{{ link.url }}"><span class="link_text">{{ link.text }}</span></a>
-                      {% endfor %}
-
-                      <span class="item">{{ entry.item }}</span>
-
-                    {% if entry.item_definition %}
-                        <p>{{ entry.item_definition }}</p>
-                    {% endif %}
-                </div>
-                <div class="tags">
-                    {% for tag in entry.tags %}
-                        <span>{{ tag }}</span>
-                    {% endfor %}
-                </div>
-            </li>
-            <br>
-        {% endfor %}
-    </ul>
 </div>
 
 <script>
     var options = {
-        valueNames: [ 'item', 'link_text', 'tags' ]
+        valueNames: ['item', 'link_text', 'tags']
     };
     var flexList = new List('flex-directory', options);
 </script>
