@@ -1,9 +1,9 @@
-{% set data = flex_entries.getData().toArray()|sort_by_key('last_name') %}
+{% set data = flex_entries.getData().toArray()|sort_by_key('item') %}
 <div id="flex-directory">
     <div class="text-center">
-        <input class="form-input search" type="text" placeholder="Search by name, email, etc" />
+        <input class="form-input search" type="text" placeholder="Wyszukaj po haśle, tagach itp." />
         <button class="button button-primary sort asc" data-sort="name">
-            Sort by Test
+            Wyszukaj
         </button>
     </div>
 
@@ -11,28 +11,31 @@
         {% for entry in data if entry.published %}
             <li>
                 <div class="entry-details">
-                    {% if entry.website %}
-                        <a href="{{ entry.website }}"><span class="name">{{ entry.last_name }}, {{ entry.first_name }}</span></a>
-                    {% else %}
-                        <span class="name">{{ entry.last_name }}, {{ entry.first_name }}</span>
-                    {% endif %}
-                    {% if entry.email %}
-                        <p><a href="mailto:{{ entry.email }}" class="email">{{ entry.email }}</a></p>
+
+                      {% for link in entry.external %}
+                        <a href="{{ link.url }}"><span class="link_text">{{ link.text }}</span></a>
+                      {% endfor %}
+
+                      <span class="item">{{ entry.item }}</span>
+
+                    {% if entry.item_definition %}
+                        <p>{{ entry.item_definition }}</p>
                     {% endif %}
                 </div>
-                <div class="entry-extra">
+                <div class="tags">
                     {% for tag in entry.tags %}
                         <span>{{ tag }}</span>
                     {% endfor %}
                 </div>
             </li>
+            <br>
         {% endfor %}
     </ul>
 </div>
 
 <script>
     var options = {
-        valueNames: [ 'name', 'email', 'website', 'entry-extra' ]
+        valueNames: [ 'item', 'link_text', 'tags' ]
     };
     var flexList = new List('flex-directory', options);
 </script>
