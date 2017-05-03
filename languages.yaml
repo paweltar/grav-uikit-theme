@@ -7,7 +7,7 @@ en:
       PREV_POST: Previous Post
   SIDEBAR:
     SIMPLE_SEARCH:
-      HEADLINE: Search
+      HEADLINE: Search on blog
     RELATED_POSTS:
       HEADLINE: Related Posts
     RANDOM_ARTICLE:
@@ -37,7 +37,7 @@ pl:
       PREV_POST: Poporzedni Wpis
   SIDEBAR:
     SIMPLE_SEARCH:
-      HEADLINE: Szukaj
+      HEADLINE: Szukaj na blogu
     RELATED_POSTS:
       HEADLINE: Powiązane wpisy
     RANDOM_ARTICLE:
