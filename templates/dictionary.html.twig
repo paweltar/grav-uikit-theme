@@ -1,0 +1,32 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    {% set first_image = page.media.images | first %}
+
+    <div class="uk-section uk-section-media uk-background-cover uk-preserve-color uk-section-xlarge" style="background-image: url({{ first_image.url }})">
+        <div class="uk-container uk-position-relative uk-padding">
+
+            <div class="uk-overlay uk-overlay-default uk-position-center uk-position-small uk-padding">
+                <div class="uk-card uk-card-default uk-card-body uk-box-shadow-small uk-text-center">
+                    <a href="{{ base_url == '' ? '/' : base_url }}" class="uk-link-reset">
+                        <h2 class="uk-margin-remove-bottom">{{ config.site.title }}
+                            <span class="site__subtitle">
+                                <em>{{ config.site.subtitle }}</em>
+                            </span>
+                        </h2>
+                    </a>
+                    <hr class="uk-divider-small">
+                    <h3 class="uk-text-uppercase">{{ page.title }}</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="uk-section uk-section-default">
+    <div class="uk-container">
+      {% include 'flex-directory/site.html.twig' %}
+    </div>
+</div>
+
+{% endblock %}
