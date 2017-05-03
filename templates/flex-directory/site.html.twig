@@ -12,33 +12,40 @@
         </div>
     </nav>
 
-
-
     <div class="list">
-      {% for entry in data if entry.published %}
+        {% for entry in data|sort if entry.published %}
+        {% set card_header_image = first_image.smooth(10).quality(70).contrast(50) %}
+            <div class="uk-card uk-card-default uk-margin uk-overflow-hidden uk-border-rounded" uk-scrollspy="cls: uk-animation-fade; repeat: true">
+                <div style="background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.7)
+    ), url({{ card_header_image.url }})" class="uk-background-cover uk-card-header uk-dark">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-expand">
+                            <h2 class="uk-card-title uk-margin-remove-bottom item uk-text-bold uk-text-uppercase">{{ entry.item }}</h2>
+                            <p class="uk-text-meta uk-margin-remove-top tags">
+                                {% for tag in entry.tags %}
+                                    <span class="uk-label">{{ tag }}</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card-body">
+                    {% if entry.item_definition %}
+                        <p>{{ entry.item_definition }}</p>
+                    {% endif %}
+                </div>
+                <div class="uk-card-footer">
+                    {% for link in entry.external %}
+                        <a href="{{ link.url }}" class="uk-link-muted uk-margin-right" uk-icon="icon: link" target="_blank">
+                            <span class="link_text">{{ link.text }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
 
-      <div class="entry-details">
-
-          {% for link in entry.external %}
-              <a href="{{ link.url }}">
-                  <span class="link_text">{{ link.text }}</span>
-              </a>
-          {% endfor %}
-
-          <span class="item">{{ entry.item }}</span>
-
-          {% if entry.item_definition %}
-              <p>{{ entry.item_definition }}</p>
-          {% endif %}
-      </div>
-
-      <div class="tags">
-          {% for tag in entry.tags %}
-              <span>{{ tag }}</span>
-          {% endfor %}
-      </div>
-
-      {% endfor %}
+        {% endfor %}
     </div>
 </div>
 
