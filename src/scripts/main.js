@@ -23,13 +23,20 @@ $(document).ready(function() {
     });
 });
 
-window.clearSearchBox = function(query) {
+window.filterByTag = function(query) {
     var searchBox = document.getElementById('dictionary-search-input');
     console.log(query);
     searchBox.value = query;
     triggerEvent(searchBox, 'keyup');
     return true;
-}
+};
+
+window.resetFilters = function() {
+    var searchBox = document.getElementById('dictionary-search-input');
+    searchBox.value = '';
+    triggerEvent(searchBox, 'keyup');
+    return true;
+};
 
 window.triggerEvent = function(el, type){
    if ('createEvent' in document) {
@@ -43,4 +50,4 @@ window.triggerEvent = function(el, type){
         e.eventType = type;
         el.fireEvent('on'+e.eventType, e);
     }
-}
+};
