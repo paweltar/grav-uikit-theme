@@ -24,13 +24,13 @@
               <h2 class="uk-card-title uk-margin-remove-bottom uk-text-bold uk-text-uppercase">Indeks Haseł</h2>
               <hr>
               {% for entry in data | sort if entry.published %}
-                <p><a class="uk-link-muted" onclick="resetFilters();" href="#{{ entry.item|hyphenize }}" uk-scroll>{{ entry.item }} <span uk-icon="icon: chevron-right"></span></a></p>
+                <p><a class="uk-link-muted" onclick="resetFilters();" href="#{{ entry.item|hyphenize }}" uk-scroll="offset: 50;">{{ entry.item }} <span uk-icon="icon: chevron-right"></span></a></p>
               {% endfor %}
             </div>
 
         </div>
         <div class="uk-width-expand@m">
-            <div class="list">
+            <div class="list" id="dictionary-section">
                 {% for entry in data | sort if entry.published %}
                     {% set card_header_image = first_image.smooth(10).quality(70).contrast(50) %}
                     <div class="uk-card uk-card-default uk-margin uk-overflow-hidden uk-border-rounded" uk-scrollspy="cls: uk-animation-fade; repeat: true" id="{{ entry.item|hyphenize }}">
@@ -43,7 +43,7 @@
                                     <h2 class="uk-card-title uk-margin-remove-bottom item uk-text-bold uk-text-uppercase">{{ entry.item }}</h2>
                                     <p class="uk-text-meta uk-margin-remove-top tags">
                                         {% for tag in entry.tags %}
-                                            <span onclick="filterByTag('{{ tag }}');" class="uk-label dictionary-tag" id="{{ tag|hyphenize }}">{{ tag }}</span>
+                                            <a href="#dictionary-section" onclick="filterByTag('{{ tag }}');" uk-scroll="offset: 50;"><span class="uk-label dictionary__tag" id="{{ tag|hyphenize }}">{{ tag }}</span></a>
                                         {% endfor %}
                                     </p>
                                 </div>
