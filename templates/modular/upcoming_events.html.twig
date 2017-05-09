@@ -1,5 +1,5 @@
 {% set first_image = page.media.images | first %}
-{% set collection = page.children %}
+{% set collection = page.children.order('date', 'desc').slice(0, 3) %}
 
 {% set limit = 2 %}
 {% set ignore_url_param_array = [ 'event' ] %}

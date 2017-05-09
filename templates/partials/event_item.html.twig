@@ -37,3 +37,53 @@
 
     </div>
 </div>
+
+<h3 class="uk-heading-line uk-text-center">
+    <span>Wszystkie powiązane zdjęcia</span>
+</h3>
+<div class="uk-child-width-1-2@s uk-text-center uk-margin-medium" uk-grid uk-lightbox>
+    {% for image in page.media.images %}
+        <a class="uk-link-muted uk-text-center" href="{{ image.url }}" type="image">
+            <div class="uk-background-cover uk-box-shadow-small uk-box-shadow-hover-large uk-height-medium uk-card" style="background-image: url({{ image.url }});"></div>
+        </a>
+    {% endfor %}
+</div>
+
+<h3 class="uk-heading-line uk-text-center">
+    <span>Pozostałe wydarzenia</span>
+</h3>
+
+{% for event in page.parent.children.order('date', 'desc') %}
+    {% set event_image_media = event.media.images | first %}
+    {% if event.url != page.url %}
+        <div class="uk-card uk-card-default uk-grid-collapse uk-margin uk-margin-remove-left uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded uk-overflow-hidden" uk-grid>
+            <div class="uk-card-media-left uk-cover-container uk-width-1-3@s" style="background-image: url({{ event_image_media.url }})"></div>
+            <div class="uk-width-expand">
+                <div class="uk-card-body uk-text-left">
+                    <h3 class="uk-card-title uk-margin-remove-bottom">
+                        <a class="uk-link-reset uk-text-lead uk-text-capitalize" href="{{ event.url }}">{{ event.title }}</a>
+                    </h3>
+                    <p class="uk-margin-remove">
+                        <time datetime="{{ event.header.custom.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(event.header.custom.date|date('n') - 1) }}">
+                          <span class="uk-margin-small-right" uk-icon="icon: calendar"></span>
+                            <span>{{ event.header.custom.date|date('d') }}
+                                {{ 'MONTHS_OF_THE_YEAR'|ta(event.header.custom.date|date('n') - 1) }}
+                                {{ event.header.custom.date|date('Y') }}</span>
+                        </time>
+                    </p>
+                    <p class="uk-margin-remove">
+                      <time datetime="{{ event.header.custom.date|date('d') }}">
+                        <span class="uk-margin-small-right" uk-icon="icon: clock"></span>
+                          <span>{{ event.header.custom.date|date('H:i') }}</span>
+                      </time>
+                    </p>
+                    <p class="uk-margin-remove event-location">
+                      <span class="uk-margin-small-right" uk-icon="icon: location"></span>
+                      <span>{{ event.header.custom.place }}</span>
+                    </p>
+                    <a class="uk-button uk-button-default uk-margin-medium-top" href="{{ event.url }}">Więcej</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
