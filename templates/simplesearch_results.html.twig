@@ -17,7 +17,35 @@
             <h3>{{"PLUGIN_SIMPLESEARCH.SEARCH_RESULTS"|t}}</h3>
             <p>
                 {% if count == 0 %}
-                    {{ "PLUGIN_SIMPLESEARCH.SEARCH_RESULTS_SUMMARY_NONE"|t(query)|raw }}
+                    {{ "PLUGIN_SIMPLESEARCH.SEARCH_RESULTS_SUMMARY_NONE"|t(query)|raw }}<br>
+                    {{ "PLUGIN_SIMPLESEARCH.SEARCH_CHECK_TAGS"|t }}
+                    {% set taxlist = taxonomylist.get() %}
+
+                    {% if taxlist %}
+                      {% set max = max(taxlist['tag']) %}
+                      {% set threshold = 0 %}
+                      {% if config.plugins.tagcloud.threshold is defined %}
+                        {% set threshold = config.plugins.tagcloud.threshold %}
+                      {% endif %}
+                    <div id="tagcloud" class="tag-cloud--footer" uk-scrollspy="cls: uk-animation-fade; target: > span; delay: 250;">
+                      {% for tax,value in taxlist['tag']|ksort %}
+                        {% set percent = (value / max) * 100 %}
+                        {% if percent > threshold %}
+                          {% set class = 'tag--largest' %}
+                          {% if percent < 20 %}
+                            {% set class = 'tag--smallest' %}
+                          {% elseif percent >= 20 and percent < 40 %}
+                            {% set class = 'tag--small' %}
+                          {% elseif percent >= 40 and percent < 60 %}
+                            {% set class = 'tag--medium' %}
+                          {% elseif percent >= 50 and percent < 80 %}
+                            {% set class = 'tag--large' %}
+                          {% endif %}
+                          <span class="{{ class }}" title="{{ value }} posts"><a class="uk-button uk-button-default uk-button-small uk-margin-small uk-margin-small-right uk-border-rounded" href="{{ base_url }}/wszystkie-wpisy/tag{{ config.system.param_sep }}{{ tax|e('url') }}"><span uk-icon="icon: tag"></span> {{ tax }} ({{value}})</a></span>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    {% endif %}
                 {% elseif count == 1 %}
                     {{ "PLUGIN_SIMPLESEARCH.SEARCH_RESULTS_SUMMARY_SINGULAR"|t(query)|raw }}
                 {% else %}

@@ -64,3 +64,4 @@ pl:
         SEARCH_RESULTS_SUMMARY_SINGULAR: "Zapytanie <q><strong>%s</strong></q> zwróciło jeden wynik."
         SEARCH_RESULTS_SUMMARY_PLURAL: "Liczba wyników dla zapytania <q><strong>%s</strong></q> (%s)."
         SEARCH_FIELD_MINIUMUM_CHARACTERS: "Aby wyszukać, użyj minimum %s znaków."
+        SEARCH_CHECK_TAGS: "Artykuły są dostępne w poniższych kategoriach:"
