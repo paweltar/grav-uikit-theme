@@ -12,7 +12,7 @@
         {% set count = search_results
             ? search_results.count
             : 0 %}
-        <div class="uk-margin-remove {{ (count != 0) ? 'uk-alert-success' : 'uk-alert-warning' }}" uk-alert>
+        <div class="uk-margin-remove uk-box-shadow-small {{ (count != 0) ? 'uk-alert-success' : 'uk-alert-warning' }}" uk-alert>
             <a class="uk-alert-close" uk-close></a>
             <h3>{{"PLUGIN_SIMPLESEARCH.SEARCH_RESULTS"|t}}</h3>
             <p>
