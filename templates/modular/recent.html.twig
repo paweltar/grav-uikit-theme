@@ -7,7 +7,7 @@
             {% for p in page.find('/blog').children.order('date', 'desc').slice(0, 6) %}
                 {% set first_image = p.media.images | first %}
                 {% set blog = p.collection() %}
-                <div class="">
+                <div>
                     {% if first_image %}
                         <div class="uk-card uk-card-default uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded uk-overflow-hidden">
                             <div class="uk-card-media-top uk-background-cover uk-height-medium uk-position-relative" style="background-image: linear-gradient(

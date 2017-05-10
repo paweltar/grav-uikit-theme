@@ -1,23 +1,45 @@
-<section class="search-row">
 
-    {% set banner = page.media.images|first %}
 
-    {% if banner %}
-    <div class="search-image">
-        <a href="{{ page.url }}">{{ banner.cropZoom(100,100).html|raw }}</a>
-    </div>
-    {% endif %}
-    <div class="search-item">
-        <div class="search-title">
-            <h3><a href="{{ page.url }}">{{ page.title }}</a></h3>
-        </div>
-
-        <div class="search-details">
-            <span class="search-date">{{ page.date|date(config.system.pages.dateformat.short) }}</span>
-        </div>
-
-        <p>{{ page.summary|raw }}</p>
-
-        <hr />
-    </div>
-</section>
+                {% set first_image = page.media.images | first %}
+                {% set blog = page.collection() %}
+                <div>
+                    {% if first_image %}
+                        <div class="uk-card uk-card-default uk-box-shadow-small uk-box-shadow-hover-large uk-border-rounded uk-overflow-hidden">
+                            <div class="uk-card-media-top uk-background-cover uk-height-medium uk-position-relative" style="background-image: linear-gradient(
+                  rgba(0, 0, 0, 0.1) 40%,
+                  rgba(0, 0, 0, 1)
+                ), linear-gradient( 0deg,
+                  rgba(0, 0, 0, 0.1) 70%,
+                  rgba(0, 0, 0, 0.9)), url({{ first_image.url }});">
+                              <div class="uk-position-top uk-overlay uk-light">
+                                <p class="uk-margin-remove">
+                                    <time datetime="{{ page.date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(page.date|date('n') - 1) }}">
+                                        <span>{{ page.date|date('d') }}
+                                            {{ 'MONTHS_OF_THE_YEAR'|ta(page.date|date('n') - 1) }}
+                                            {{ page.date|date('Y') }}</span>
+                                    </time>
+                                </p>
+                              </div>
+                              <div class="uk-position-bottom uk-overlay uk-light">
+                                {% if page.taxonomy.tag %}
+                                    <span>
+                                        {% for tag in page.taxonomy.tag %}
+                                            <span uk-icon="icon: tag" class="uk-margin-xsmall-right"></span>
+                                            <a href="{{ page.parent.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="p-category">{{ tag }}</a>
+                                        {% endfor %}
+                                    </span>
+                                {% endif %}
+                              </div>
+                            </div>
+                            <div class="uk-card-body blog-card--blank">
+                                <h3 class="uk-heading-bullet uk-text-capitalize"><a class="uk-link-reset" href="{{page.url}}">{{ page.title }} <span class="uk-margin-small-right" uk-icon="icon: chevron-right" uk-scrollspy="cls: uk-animation-slide-left; repeat: true"></span></a></h3>
+                                <p>{{page.summary |safe_truncate(150) }}</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="uk-card uk-card-default uk-card-large uk-card-body uk-text-center uk-box-shadow-small uk-light uk-box-shadow-hover-large blog-card--blank" style="background: linear-gradient(#A58962,#876f4d);">
+                            <h3 class="uk-heading-divider uk-text-capitalize"><a class="uk-link-reset" href="{{page.url}}">{{ page.title }} <span class="uk-margin-small-right" uk-icon="icon: chevron-right" uk-scrollspy="cls: uk-animation-slide-left; repeat: true"></span></a></h3>
+                            <p>{{page.summary}}</p>
+                        </div>
+                    {% endif %}
+</div>
