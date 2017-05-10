@@ -1,9 +1,10 @@
 {% set min_chars = config.get('plugins.simplesearch.min_query_length', 3) %}
-<div class="search-wrapper">
-    <form name="search" onSubmit="return validateSearch(event);">
+<div class="">
+    <form name="search" onSubmit="return validateSearch(event);" class="">
+      <div class="uk-form-custom uk-button-group uk-width-1-1">
         <input
             name="searchfield"
-            class="search-input"
+            class="search-input uk-input"
             type="text"
             pattern=".{ {{- min_chars -}} ,}"
             required
@@ -13,11 +14,14 @@
             data-search-input="{{ base_url }}{{ config.plugins.simplesearch.route == '@self' ? '' : (config.plugins.simplesearch.route == '/' ? '' : config.plugins.simplesearch.route) }}/query"
         />
         {% if config.plugins.simplesearch.display_button %}
-            <button type="submit" class="search-submit">
-                <img src="{{ url('plugin://simplesearch/assets/search.svg') }}" />
+            <button type="submit" class="uk-button uk-button-default search-submit">
+                <span uk-icon="icon: search"></span>
             </button>
         {% endif %}
+      </div>
+
     </form>
+
     <script>
     function validateSearch(event) {
         var input = document.forms["search"]["searchfield"];
