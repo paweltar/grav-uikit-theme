@@ -1,9 +1,9 @@
 <div class="uk-position-relative uk-light">
-    <div class="last-projects__slider">
+    <div class="last-projects__slider" uk-height-match="target: .project-slide">
         {% for p in page.find('/projekty').children.order('date', 'desc').slice(0, 5) %}
 
             {% set first_image = p.media.images | first %}
-            <div class="uk-section uk-position-relative uk-section-xlarge uk-section-media uk-light uk-background-cover" style="background-image: linear-gradient(
+            <div class="uk-section project-slide uk-position-relative uk-section-xlarge uk-section-media uk-light uk-background-cover" style="background-image: linear-gradient(
   rgba(0, 0, 0, 0.1) 40%,
   rgba(0, 0, 0, 0.9)
   ),linear-gradient(90deg,
