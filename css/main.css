@@ -18,6 +18,8 @@ time > span, .event-location > span {
   height: 100%;
   opacity: 0.97;
   font-family: EB Garamond; }
+  .uk-modal-dialog img {
+    height: 100%; }
 
 .section--breadcrumbs {
   padding-top: 20px;
